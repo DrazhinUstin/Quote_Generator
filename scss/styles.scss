@@ -1,5 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,400;0,700;1,400&display=swap');
 @import 'config';
+@import 'preloader';
 
 * {
     margin: 0;
@@ -31,6 +32,10 @@ button {
     header {
         margin-bottom: 1rem;
         text-align: center;
+        form {
+            margin-bottom: 1rem;
+            text-align: right;
+        }
         h2 {
             text-transform: capitalize;
             letter-spacing: $space;
@@ -45,6 +50,10 @@ button {
         @extend %flex-between;
         padding-top: 1rem;
         border-top: 1px solid $grey;
+        &.disabled {
+            opacity: 0.8;
+            pointer-events: none;
+        }
     }
 }
 
@@ -79,6 +88,24 @@ button {
             background-color: $main-color;
             color: $white;
         }
+        &.active {
+            background-color: $main-color;
+            color: $white;
+            pointer-events: none;
+        }
+    }
+}
+
+#tags-list {
+    padding: 0.25rem;
+    border: 1px solid $grey;
+    border-radius: $radius;
+    font-size: 1rem;
+    text-transform: capitalize;
+    &:focus {
+        outline: none;
+        padding: calc(0.25rem - 1px);
+        border: 2px solid $main-color;
     }
 }
 

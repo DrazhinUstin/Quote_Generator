@@ -1,5 +1,5 @@
 @import url("https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,400;0,700;1,400&display=swap");
-body {
+.preloader, body {
   display: -ms-grid;
   display: grid;
   place-items: center;
@@ -17,6 +17,55 @@ body {
           align-items: center;
   -webkit-column-gap: 1rem;
           column-gap: 1rem;
+}
+
+.preloader {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: inherit;
+  -webkit-transition: all 0.4s ease;
+  transition: all 0.4s ease;
+  z-index: 999;
+}
+
+.preloader.hide {
+  visibility: hidden;
+  opacity: 0;
+}
+
+.preloader span {
+  width: 3rem;
+  height: 3rem;
+  border: 0.5rem solid white;
+  border-right-color: transparent;
+  border-radius: 50%;
+  -webkit-animation: circling 0.6s linear 0s infinite;
+          animation: circling 0.6s linear 0s infinite;
+}
+
+@-webkit-keyframes circling {
+  0% {
+    -webkit-transform: rotate(0);
+            transform: rotate(0);
+  }
+  100% {
+    -webkit-transform: rotate(360deg);
+            transform: rotate(360deg);
+  }
+}
+
+@keyframes circling {
+  0% {
+    -webkit-transform: rotate(0);
+            transform: rotate(0);
+  }
+  100% {
+    -webkit-transform: rotate(360deg);
+            transform: rotate(360deg);
+  }
 }
 
 * {
@@ -53,6 +102,11 @@ button {
   text-align: center;
 }
 
+.wrapper header form {
+  margin-bottom: 1rem;
+  text-align: right;
+}
+
 .wrapper header h2 {
   text-transform: capitalize;
   letter-spacing: 0.1rem;
@@ -67,6 +121,11 @@ button {
 .wrapper footer {
   padding-top: 1rem;
   border-top: 1px solid #c3c3c3;
+}
+
+.wrapper footer.disabled {
+  opacity: 0.8;
+  pointer-events: none;
 }
 
 .quote {
@@ -108,6 +167,26 @@ button {
 .icon-btns button:hover {
   background-color: #3c74db;
   color: white;
+}
+
+.icon-btns button.active {
+  background-color: #3c74db;
+  color: white;
+  pointer-events: none;
+}
+
+#tags-list {
+  padding: 0.25rem;
+  border: 1px solid #c3c3c3;
+  border-radius: 0.25rem;
+  font-size: 1rem;
+  text-transform: capitalize;
+}
+
+#tags-list:focus {
+  outline: none;
+  padding: calc(0.25rem - 1px);
+  border: 2px solid #3c74db;
 }
 
 #generate-quote-btn {
