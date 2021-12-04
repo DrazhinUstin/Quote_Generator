@@ -1,0 +1,96 @@
+@import url('https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,400;0,700;1,400&display=swap');
+@import 'config';
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Lato', sans-serif;
+}
+
+body {
+    min-height: 100vh;
+    @extend %grid-center;
+    background-color: $main-color;
+    color: $black;
+    line-height: 1;
+}
+
+button {
+    font-size: 1rem;
+    line-height: 1;
+    cursor: pointer;
+}
+
+.wrapper {
+    max-width: 500px;
+    width: 90vw;
+    padding: 1rem;
+    border-radius: $radius;
+    background-color: $white;
+    header {
+        margin-bottom: 1rem;
+        text-align: center;
+        h2 {
+            text-transform: capitalize;
+            letter-spacing: $space;
+        }
+    }
+    main {
+        margin-bottom: 1rem;
+        font-size: 1.2rem;
+        line-height: 1.5;
+    }
+    footer {
+        @extend %flex-between;
+        padding-top: 1rem;
+        border-top: 1px solid $grey;
+    }
+}
+
+.quote {
+    margin-bottom: 0.5rem;
+    text-align: center;
+    i {
+        margin-right: 0.25rem;
+        color: $main-color;
+    }
+}
+
+.quote-author {
+    color: darken($grey, 20%);
+    text-align: right;
+    font-style: italic;
+    text-transform: capitalize;
+}
+
+.icon-btns {
+    display: flex;
+    column-gap: 0.5rem;
+    button {
+        width: 2.25rem;
+        height: 2.25rem;
+        border: 1px solid $main-color;
+        border-radius: 50%;
+        background-color: inherit;
+        color: $main-color;
+        transition: $ease-trans;
+        &:hover {
+            background-color: $main-color;
+            color: $white;
+        }
+    }
+}
+
+#generate-quote-btn {
+    padding: 0.5rem;
+    border: none;
+    border-radius: $radius;
+    background-color: $main-color;
+    color: $white;
+    text-transform: capitalize;
+    transition:$ease-trans;
+    &:hover {
+        background-color: darken($main-color, 10%);
+    }
+}
