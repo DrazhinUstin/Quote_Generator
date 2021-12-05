@@ -133,7 +133,7 @@ button {
 }
 
 .wrapper header form {
-  margin-bottom: 1rem;
+  margin-bottom: 1.25rem;
   text-align: right;
 }
 
@@ -197,6 +197,7 @@ button {
   padding: 0 0.25rem;
   border: 1px solid #c3c3c3;
   border-radius: 0.25rem;
+  background-color: white;
   color: #1b1a1a;
   font-size: 1rem;
   text-transform: capitalize;
