@@ -1,10 +1,14 @@
-$main-color: rgb(60, 116, 219);
 $black: rgb(27, 26, 26);
 $white: rgb(255, 255, 255);
 $grey: rgb(195, 195, 195);
 $space: 0.1rem;
 $radius: 0.25rem;
+$radius-2: 0.5rem;
 $ease-trans: all 0.4s ease;
+
+:root {
+    --main-color: #3c74db;
+}
 
 %grid-center {
     display: grid;
@@ -16,4 +20,12 @@ $ease-trans: all 0.4s ease;
     justify-content: space-between;
     align-items: center;
     column-gap: 1rem;
+}
+
+@mixin for-size($size) {
+    @if ($size == 'extra-small') {
+        @media screen and (max-width: 350px) {
+            @content;
+        }
+    }
 }

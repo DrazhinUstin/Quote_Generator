@@ -1,6 +1,9 @@
-import {fetchData, hidePreloader} from './modules/utils.js';
+import {fetchData, getFromStorage, saveToStorage, hidePreloader} from './modules/utils.js';
+import setColorSwither from './modules/setColorSwitcher.js';
 
 document.addEventListener('DOMContentLoaded', async () => {
+    const settings = getFromStorage('settings');
+    setColorSwither(settings);
     const audioBtn = document.getElementById('audio-btn');
     const copyBtn = document.getElementById('copy-btn');
     const twitterBtn = document.getElementById('twitter-btn');
@@ -10,24 +13,29 @@ document.addEventListener('DOMContentLoaded', async () => {
     const tagsListDOM = document.getElementById('tags-list');
     const tagsListUrl = 'https://api.quotable.io/tags';
     const tagsListData = await fetchData(tagsListUrl);
-    if (tagsListData.statusCode === 404) {
-        alert(tagsListData.statusMessage);
+    if (tagsListData.message || tagsListData.statusCode === 404) {
+        alert(tagsListData.message || tagsListData.statusMessage);
         return;
     }
     const tagsList = tagsListData.filter(item => item.quoteCount >= 4);
     const quotesTotalAmount = tagsList.reduce((amount, item) => amount += item.quoteCount, 0);
     tagsList.unshift({name: 'all', quoteCount: quotesTotalAmount});
     tagsListDOM.innerHTML = tagsList.map(item => {
-        return `<option value="${item.name}">${item.name} (${item.quoteCount})</option>`;
+        return `<option value="${item.name}" ${item.name === settings.currentTag ? 'selected' : ''}>${item.name} (${item.quoteCount})</option>`;
     }).join('');
+
+    tagsListDOM.addEventListener('change', () => {
+        settings.currentTag = tagsListDOM.value;
+        saveToStorage('settings', settings);
+    });
 
     generateQuoteBtn.addEventListener('click', async () => {
         generateQuoteBtn.parentElement.classList.add('disabled');
         generateQuoteBtn.textContent = 'loading...';
         const randomQuoteUrl = `https://api.quotable.io/random${tagsListDOM.value !== 'all' ? '?tags=' + tagsListDOM.value : ''}`;
         const randomQuoteData = await fetchData(randomQuoteUrl);
-        if (randomQuoteData.statusCode === 404) {
-            alert(randomQuoteData.statusMessage);
+        if (randomQuoteData.message || randomQuoteData.statusCode === 404) {
+            alert(randomQuoteData.message || randomQuoteData.statusMessage);
         } else {
             quoteDOM.innerHTML = `<i class="fas fa-quote-left"></i> ${randomQuoteData.content}`;
             quoteAuthorDOM.textContent = `— ${randomQuoteData.author}`;

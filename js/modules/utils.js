@@ -5,7 +5,16 @@ const fetchData = async (url) => {
         return data;
     } catch (error) {
         console.log(error);
+        return error;
     }
+};
+
+const getFromStorage = (key) => {
+    return localStorage.getItem(key) ? JSON.parse(localStorage.getItem(key)) : {};
+};
+
+const saveToStorage = (key, value) => {
+    localStorage.setItem(key, JSON.stringify(value));
 };
 
 const hidePreloader = () => {
@@ -16,4 +25,4 @@ const hidePreloader = () => {
     }, 1000);
 };
 
-export {fetchData, hidePreloader};
+export {fetchData, getFromStorage, saveToStorage, hidePreloader};

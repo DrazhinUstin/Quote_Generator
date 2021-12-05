@@ -12,9 +12,11 @@
 body {
     min-height: 100vh;
     @extend %grid-center;
-    background-color: $main-color;
+    background-color: var(--main-color);
     color: $black;
     line-height: 1;
+    transition: $ease-trans;
+    transition-property: background-color;
 }
 
 button {
@@ -23,11 +25,30 @@ button {
     cursor: pointer;
 }
 
+.icon-btn {
+    width: 2rem;
+    height: 2rem;
+    border: 1px solid var(--main-color);
+    border-radius: 50%;
+    background-color: inherit;
+    color: var(--main-color);
+    transition: $ease-trans;
+    &:hover {
+        background-color: var(--main-color);
+        color: $white;
+    }
+    &.active {
+        background-color: var(--main-color);
+        color: $white;
+        pointer-events: none;
+    }
+}
+
 .wrapper {
     max-width: 500px;
     width: 90vw;
     padding: 1rem;
-    border-radius: $radius;
+    border-radius: $radius-2;
     background-color: $white;
     header {
         margin-bottom: 1rem;
@@ -54,6 +75,13 @@ button {
             opacity: 0.8;
             pointer-events: none;
         }
+        & > div:first-child {
+            display: flex;
+            column-gap: 0.5rem;
+            @include for-size(extra-small) {
+                column-gap: 0.25rem;
+            }
+        }
     }
 }
 
@@ -62,7 +90,8 @@ button {
     text-align: center;
     i {
         margin-right: 0.25rem;
-        color: $main-color;
+        color: var(--main-color);
+        transition: $ease-trans;
     }
 }
 
@@ -73,51 +102,28 @@ button {
     text-transform: capitalize;
 }
 
-.icon-btns {
-    display: flex;
-    column-gap: 0.5rem;
-    button {
-        width: 2.25rem;
-        height: 2.25rem;
-        border: 1px solid $main-color;
-        border-radius: 50%;
-        background-color: inherit;
-        color: $main-color;
-        transition: $ease-trans;
-        &:hover {
-            background-color: $main-color;
-            color: $white;
-        }
-        &.active {
-            background-color: $main-color;
-            color: $white;
-            pointer-events: none;
-        }
-    }
-}
-
 #tags-list {
-    padding: 0.25rem;
+    height: 2rem;
+    padding: 0 0.25rem;
     border: 1px solid $grey;
     border-radius: $radius;
+    color: $black;
     font-size: 1rem;
     text-transform: capitalize;
     &:focus {
         outline: none;
-        padding: calc(0.25rem - 1px);
-        border: 2px solid $main-color;
+        padding: 0 calc(0.25rem - 1px);
+        border: 2px solid var(--main-color);
     }
 }
 
 #generate-quote-btn {
-    padding: 0.5rem;
+    height: 2rem;
+    padding: 0 0.5rem;
     border: none;
     border-radius: $radius;
-    background-color: $main-color;
+    background-color: var(--main-color);
     color: $white;
     text-transform: capitalize;
     transition:$ease-trans;
-    &:hover {
-        background-color: darken($main-color, 10%);
-    }
 }

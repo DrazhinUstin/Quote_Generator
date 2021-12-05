@@ -1,4 +1,8 @@
 @import url("https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,400;0,700;1,400&display=swap");
+:root {
+  --main-color: #3c74db;
+}
+
 .preloader, body {
   display: -ms-grid;
   display: grid;
@@ -78,9 +82,13 @@
 
 body {
   min-height: 100vh;
-  background-color: #3c74db;
+  background-color: var(--main-color);
   color: #1b1a1a;
   line-height: 1;
+  -webkit-transition: all 0.4s ease;
+  transition: all 0.4s ease;
+  -webkit-transition-property: background-color;
+  transition-property: background-color;
 }
 
 button {
@@ -89,11 +97,33 @@ button {
   cursor: pointer;
 }
 
+.icon-btn {
+  width: 2rem;
+  height: 2rem;
+  border: 1px solid var(--main-color);
+  border-radius: 50%;
+  background-color: inherit;
+  color: var(--main-color);
+  -webkit-transition: all 0.4s ease;
+  transition: all 0.4s ease;
+}
+
+.icon-btn:hover {
+  background-color: var(--main-color);
+  color: white;
+}
+
+.icon-btn.active {
+  background-color: var(--main-color);
+  color: white;
+  pointer-events: none;
+}
+
 .wrapper {
   max-width: 500px;
   width: 90vw;
   padding: 1rem;
-  border-radius: 0.25rem;
+  border-radius: 0.5rem;
   background-color: white;
 }
 
@@ -128,6 +158,21 @@ button {
   pointer-events: none;
 }
 
+.wrapper footer > div:first-child {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-column-gap: 0.5rem;
+          column-gap: 0.5rem;
+}
+
+@media screen and (max-width: 350px) {
+  .wrapper footer > div:first-child {
+    -webkit-column-gap: 0.25rem;
+            column-gap: 0.25rem;
+  }
+}
+
 .quote {
   margin-bottom: 0.5rem;
   text-align: center;
@@ -135,7 +180,9 @@ button {
 
 .quote i {
   margin-right: 0.25rem;
-  color: #3c74db;
+  color: var(--main-color);
+  -webkit-transition: all 0.4s ease;
+  transition: all 0.4s ease;
 }
 
 .quote-author {
@@ -145,61 +192,30 @@ button {
   text-transform: capitalize;
 }
 
-.icon-btns {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-column-gap: 0.5rem;
-          column-gap: 0.5rem;
-}
-
-.icon-btns button {
-  width: 2.25rem;
-  height: 2.25rem;
-  border: 1px solid #3c74db;
-  border-radius: 50%;
-  background-color: inherit;
-  color: #3c74db;
-  -webkit-transition: all 0.4s ease;
-  transition: all 0.4s ease;
-}
-
-.icon-btns button:hover {
-  background-color: #3c74db;
-  color: white;
-}
-
-.icon-btns button.active {
-  background-color: #3c74db;
-  color: white;
-  pointer-events: none;
-}
-
 #tags-list {
-  padding: 0.25rem;
+  height: 2rem;
+  padding: 0 0.25rem;
   border: 1px solid #c3c3c3;
   border-radius: 0.25rem;
+  color: #1b1a1a;
   font-size: 1rem;
   text-transform: capitalize;
 }
 
 #tags-list:focus {
   outline: none;
-  padding: calc(0.25rem - 1px);
-  border: 2px solid #3c74db;
+  padding: 0 calc(0.25rem - 1px);
+  border: 2px solid var(--main-color);
 }
 
 #generate-quote-btn {
-  padding: 0.5rem;
+  height: 2rem;
+  padding: 0 0.5rem;
   border: none;
   border-radius: 0.25rem;
-  background-color: #3c74db;
+  background-color: var(--main-color);
   color: white;
   text-transform: capitalize;
   -webkit-transition: all 0.4s ease;
   transition: all 0.4s ease;
-}
-
-#generate-quote-btn:hover {
-  background-color: #245bc0;
 }
